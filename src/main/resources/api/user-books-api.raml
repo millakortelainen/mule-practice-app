@@ -1,0 +1,34 @@
+#%RAML 1.0
+title: User Books API
+
+types:
+  UserBook: !include datatypes/UserBook.raml
+
+/user-books:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: UserBook[]
+  post:
+    body:
+      application/json:
+        type: UserBook
+        examples:
+          input: !include examples/UserBookExample.raml
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              message: Book added.
+  /{userID}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: UserBook[]
+              examples:
+                output: !include examples/UserBooksExample.raml
